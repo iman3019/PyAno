@@ -17,6 +17,7 @@ class Piano:
         self.name = name
         self.description = description
         self.basic_purpose = basic_purpose
+        self.is_deleted:bool = False
 
 
     def __repr__(self):
@@ -25,9 +26,11 @@ class Piano:
 
     def _to_dict(self) -> Dict:
         return {
-            "category": self.category,
-            "piano_type": self.piano_type,
+            "id": self.id,
+            "category": self.category.to_dict(),
+            "piano_type": self.piano_type.to_dict(),
             "name": self.name,
             "description": self.description,
-            "basic_purpose": self.basic_purpose
+            "basic_purpose": self.basic_purpose,
+            "is_deleted": self.is_deleted   
         }   

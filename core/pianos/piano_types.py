@@ -7,6 +7,11 @@ class PianoType:
 
     def __repr__(self):
         return f" Piano type is '{self.piano_type}'"
+    
+    def to_dict(self):
+        return {
+            "piano_type": self.piano_type
+        }
 
 
 

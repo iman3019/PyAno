@@ -9,6 +9,11 @@ class PianoCategory:
         return f"Piano category is: '{self.category}'"
 
 
+    def to_dict(self):
+        return {
+            "category": self.category
+        }
+
 
 
     # ACOUSTIC = "acoustic"
