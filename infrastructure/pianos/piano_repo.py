@@ -16,6 +16,19 @@ class PianoRepo:
         elif repo_type == 'db':
             self._db_connection_string = 'database_connection_string'
 
+    
+    def get_all_pianos(self) -> Piano:
+        pianos = []
+        if self._repo_type == 'file':
+            with open(self._file_path, 'r') as f:
+                for line in f:
+                    pianos.append(Piano.from_json(line))
+        elif self._repo_type == 'db':
+            # Implement database retrieval logic here
+            pass
+        return pianos
+    
+    
     def save_piano(self, piano: Piano) -> Piano:
         if self.repo_type == 'file':
             pianos = self._read_pianos_from_file()
@@ -23,6 +36,8 @@ class PianoRepo:
             with open(self._file_path, 'w') as file_writer:
                 json.dump(pianos, file_writer, indent=4)
             return piano
+        elif self.repo_type == 'db':
+            pass
     
     def _read_pianos_from_file (self):
         try:

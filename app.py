@@ -3,7 +3,7 @@ import json
 from core import PianoCategory, PianoType, Piano
 from services import PianoService
 from config import AppConfig
-from constants import REPO_TYPE_FILE
+from constants import REPO_TYPE_FILE, CONFIG_FILE_TYPE
 
 
 def load_config(file_path: str) -> AppConfig:
@@ -34,8 +34,13 @@ def load_config(file_path: str) -> AppConfig:
 
 
 def main():
-    config = load_config()
-    pass
+    app_config = load_config(CONFIG_FILE_TYPE)
+    if app_config is None:
+        print(f'Could not load config from file. Exiting.')
+        return
+
+    piano_service = PianoService(app_config)
+
 
 
 
