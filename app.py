@@ -9,7 +9,7 @@ from constants import REPO_TYPE_FILE, CONFIG_FILE_TYPE
 def load_config(file_path: str) -> AppConfig:
     try:
         with open(file_path, 'r') as file_reader:
-            config_data = json.load(file_reader)
+            config_data = dict(json.load(file_reader))
     
         return AppConfig(
             debug=config_data.get('debug', False),
@@ -44,9 +44,9 @@ def main():
 
 
 
-piano = Piano(1, category='acoustic', piano_type='upright', name='Petrof', description='Petrof upright piano', basic_purpose='home and school use')
+    piano = Piano(1, category='acoustic', piano_type='upright', name='Petrof', description='Petrof upright piano', basic_purpose='home and school use')
 
-print(piano)
+    print(piano)
 
 
 if __name__ == "__main__":
