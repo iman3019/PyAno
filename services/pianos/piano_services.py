@@ -20,15 +20,14 @@ class PianoService:
                 return piano
         return None
     
-    def get_all_pianos(self, is_deleted: bool = False ):
+    def get_all_pianos(self, is_deleted: bool = False):
+        self.pianos = self.repo.get_all_pianos()
         return [piano for piano in self.pianos if piano.is_deleted == is_deleted]
 
     def update_piano(self, piano_id: int, piano: Piano, is_deleted: bool = False):
         for piano in self.pianos:
             if piano.id == piano_id:
-                piano.is_deleted = is_deleted
-                piano = Piano()
-                return self.create_piano (piano)
+                pass
 
         return None
 

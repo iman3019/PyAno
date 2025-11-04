@@ -17,13 +17,12 @@ class PianoRepo:
             self._db_connection_string = 'database_connection_string'
 
     
-    def get_all_pianos(self) -> Piano:
+    def get_all_pianos(self):
         pianos = []
         if self.repo_type == 'file':
             pianos = self._read_pianos_from_file()
-            # with open(self._file_path, 'r') as file_reader:
-            #     for line in file_reader:
-            #         pianos.append(Piano.from_json(line))
+            pianos = [dict_to_piano(piano) for piano in pianos]
+
         elif self.repo_type == 'db':
             # Implement database retrieval logic here
             pass
@@ -48,8 +47,7 @@ class PianoRepo:
                     return []
                 elif len(piano_data) == 1:
                     return piano_data
-                else:
-                   return piano_data
+                return piano_data
         except FileNotFoundError:
             return []
         except json.JSONDecodeError:
@@ -58,4 +56,13 @@ class PianoRepo:
             print (f'An unexpected exception occured while reading pianos file: {ex}')
             return []
 
+
+def dict_to_piano(dictionary):
+    return Piano(   dictionary['id'],
+                    dictionary['category'],
+                    dictionary['piano_type'],
+                    dictionary['name'],
+                    dictionary['description'],
+                    dictionary['basic_purpose']
+    )    
             

@@ -63,6 +63,8 @@ def main():
 
     print(piano)
 
+    all_pianos = piano_service.get_all_pianos()
+    print(all_pianos)
 
 if __name__ == "__main__":
     main()
