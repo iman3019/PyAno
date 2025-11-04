@@ -1,0 +1,28 @@
+[
+    {
+        "id": 1,
+        "category": {
+            "category": "acoustic"
+        },
+        "piano_type": {
+            "piano_type": "upright"
+        },
+        "name": "Petrof",
+        "description": "upright wooden acoustic piano",
+        "basic_purpose": "education and small hall playing",
+        "is_deleted": false
+    },
+    {
+        "id": 2,
+        "category": {
+            "category": "acoustic"
+        },
+        "piano_type": {
+            "piano_type": "upright"
+        },
+        "name": "Yamaha",
+        "description": "upright mdf acoustic piano",
+        "basic_purpose": " home use",
+        "is_deleted": false
+    }
+]

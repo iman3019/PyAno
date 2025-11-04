@@ -40,9 +40,24 @@ def main():
         return
 
     piano_service = PianoService(app_config)
+    piano_acoustic = PianoCategory(category="acoustic")
+    upright_piano = PianoType(piano_type="upright")
+    petrof = Piano(id= 1,
+                   category=piano_acoustic,
+                   piano_type=upright_piano,
+                   name="Petrof",
+                   description="upright wooden acoustic piano",
+                   basic_purpose="education and small hall playing")
+    petrof = piano_service.create_piano(petrof)
 
 
-
+    yamaha = Piano(id=2,
+                   category=piano_acoustic,
+                   piano_type=upright_piano,
+                   name="Yamaha",
+                   description="upright mdf acoustic piano",
+                   basic_purpose=" home use")
+    yamaha = piano_service.create_piano(yamaha)
 
     piano = Piano(1, category='acoustic', piano_type='upright', name='Petrof', description='Petrof upright piano', basic_purpose='home and school use')
 

@@ -16,7 +16,7 @@ class PianoService:
     
     def get_piano(self, piano_id: int, is_deleted: bool = False):
         for piano in self.pianos:
-            if piano.id == piano_id and piano.is_deleted == False:
+            if piano.id == piano_id and piano.is_deleted == is_deleted:
                 return piano
         return None
     

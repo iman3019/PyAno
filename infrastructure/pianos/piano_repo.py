@@ -19,11 +19,12 @@ class PianoRepo:
     
     def get_all_pianos(self) -> Piano:
         pianos = []
-        if self._repo_type == 'file':
-            with open(self._file_path, 'r') as f:
-                for line in f:
-                    pianos.append(Piano.from_json(line))
-        elif self._repo_type == 'db':
+        if self.repo_type == 'file':
+            pianos = self._read_pianos_from_file()
+            # with open(self._file_path, 'r') as file_reader:
+            #     for line in file_reader:
+            #         pianos.append(Piano.from_json(line))
+        elif self.repo_type == 'db':
             # Implement database retrieval logic here
             pass
         return pianos
@@ -46,7 +47,9 @@ class PianoRepo:
                 if len(piano_data) == 0:
                     return []
                 elif len(piano_data) == 1:
-                    return[piano_data]
+                    return piano_data
+                else:
+                   return piano_data
         except FileNotFoundError:
             return []
         except json.JSONDecodeError:
