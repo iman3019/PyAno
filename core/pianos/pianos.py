@@ -21,7 +21,7 @@ class Piano:
 
 
     def __repr__(self):
-        return f"'{self.category}' '{self.piano_type}' '{self.name}' piano for '{self.description}'."
+        return f"{self.name} {self.category} {self.piano_type} piano for {self.basic_purpose}."
     
 
     def _to_dict(self) -> Dict:
