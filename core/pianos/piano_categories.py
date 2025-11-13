@@ -1,18 +1,21 @@
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import relationship
+
+from infrastructure.database.database import Base
+from config import NAME_LENGHT
 
 
+class PianoCategory(Base):
+    __tablename__ = 'piano_category'
 
-class PianoCategory:
-    def __init__(self, category: str):
-        self.category = category
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(NAME_LENGHT), nullable=False)
+
+    pianos = relationship('Piano', back_populates='piano_category')
 
     def __repr__(self):
-        return f"Piano category is: '{self.category}'"
+        return f'Piano category: {self.name}'
 
-
-    def to_dict(self):
-        return {
-            "category": self.category
-        }
 
 
 

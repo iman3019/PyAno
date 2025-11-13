@@ -1,38 +1,29 @@
-from typing import Dict
-from .piano_categories import PianoCategory
-from .piano_types import PianoType
+from sqlalchemy import Column, Integer, String, DECIMAL, ForeignKey
+from sqlalchemy.orm import relationship
+
+from infrastructure.database.database import Base
+from config import NAME_LENGHT, DESCRIPTION_LENGHT, URL_LENGHT, LOCATION_STR
 
 
-class Piano:
-    def __init__(self, 
-                 id: int,
-                 category: PianoCategory, 
-                 piano_type: PianoType,
-                 name:str,
-                 description: str,
-                 basic_purpose: str):
-        self.id = id
-        self.category = category
-        self.piano_type = piano_type
-        self.name = name
-        self.description = description
-        self.basic_purpose = basic_purpose
-        self.is_deleted:bool = False
+class Piano(Base):
+    __tablename__ = 'piano'
 
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(NAME_LENGHT), nullable=False)
+    price = Column(DECIMAL(scale=18, precision=6), nullable=False, default=0.0)
+
+    description = Column(String(DESCRIPTION_LENGHT), nullable=True)
+    image_url = Column(String(URL_LENGHT), nullable=True)
+    location = Column(String(LOCATION_STR), nullable=True)
+
+    piano_type = relationship('PianoType', back_populates='pianos')
+    piano_type_id = Column(Integer, ForeignKey('piano_type.id'))
+
+    piano_category = relationship('PianoCategory', back_populates='pianos')
+    piano_category_id = Column(Integer, ForeignKey('piano_category.id'))
 
     def __repr__(self):
-        return f"{self.name} {self.category} {self.piano_type} piano for {self.basic_purpose}."
-    
-
-    def _to_dict(self) -> Dict:
-        return {
-            "id": self.id,
-            "category": self.category.to_dict(),
-            "piano_type": self.piano_type.to_dict(),
-            "name": self.name,
-            "description": self.description,
-            "basic_purpose": self.basic_purpose,
-            "is_deleted": self.is_deleted   
-        }   
-    
-    
+        if self.id:
+            return f'Piano: ({self.id}) {self.name} ({self.price} EUR)'
+        else:
+            return f'Piano: {self.name} ({self.price} EUR)'
