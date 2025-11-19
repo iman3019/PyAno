@@ -4,9 +4,9 @@
 DATABASE_PATH = 'sqlite:///data_store/db/py_ano.db'
 
 # Models constraints
-NAME_LENGHT = 150
-DESCRIPTION_LENGHT = 1500
-URL_LENGHT = 450
+NAME_LENGTH = 150
+DESCRIPTION_LENGTH = 1500
+URL_LENGTH = 450
 LOCATION_STR = 50
 
 

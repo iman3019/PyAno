@@ -1,17 +1,17 @@
 from sqlalchemy import Column, Integer, String
 
 from infrastructure.database.database import Base
-from config import NAME_LENGHT, DESCRIPTION_LENGHT, URL_LENGHT
+from config import NAME_LENGTH, DESCRIPTION_LENGTH, URL_LENGTH
 
 
 class PianoChords(Base):
     __tablename__ = 'piano_chords'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(NAME_LENGHT), nullable=False)
+    name = Column(String(NAME_LENGTH), nullable=False)
 
-    description = Column(String(DESCRIPTION_LENGHT), nullable=True)
-    image_url = Column(String(URL_LENGHT), nullable=True)
+    description = Column(String(DESCRIPTION_LENGTH), nullable=True)
+    image_url = Column(String(URL_LENGTH), nullable=True)
 
     def __repr__(self):
         if self.id:
